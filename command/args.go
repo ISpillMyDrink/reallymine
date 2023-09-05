@@ -56,6 +56,7 @@ func addarg(a argInterface) Arg {
 var (
 	typeDisk      = reflect.TypeOf((*disk.Disk)(nil))
 	typeWriter    = reflect.TypeOf((*io.Writer)(nil)).Elem()
+	typeWriterAt  = reflect.TypeOf((*io.WriterAt)(nil)).Elem()
 	typeFile      = reflect.TypeOf((*os.File)(nil))
 	typeAsker     = reflect.TypeOf((*kek.Asker)(nil))
 	typeByteSlice = reflect.TypeOf([]byte(nil))
@@ -144,7 +145,7 @@ func (argOutImageType) desc() string {
 
 // TODO use typeFile?
 func (argOutImageType) argType() reflect.Type {
-	return typeWriter
+	return typeWriterAt
 }
 
 func (argOutImageType) prepare(arg string) (out *argOut, err error) {
